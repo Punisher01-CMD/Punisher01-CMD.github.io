@@ -6,69 +6,245 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>La Lin Tun | Portfolio</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #1e40af;
+      --accent-color: #3b82f6;
+      --text-muted: #64748b;
+      --dark-bg: #0f172a;
+      --card-bg: #1e293b;
+    }
+
+    * {
+      scroll-behavior: smooth;
+    }
+
+    html {
+        scroll-padding-top: 80px; /* Adjust according to your navbar height */
+    }
+
     body {
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: #fff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #ffffff;
+      color: #1f2937;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
     }
 
     .navbar {
-      background-color: #111;
+      background: #ffffff;
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--primary-color);
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(37, 99, 235, 0.1);
     }
 
-    .navbar-brand, .nav-link {
-      color: #00ffff !important;
+    .navbar-brand {
+      font-weight: 700;
+      color: var(--primary-color) !important;
+      font-size: 1.5rem;
+    }
+
+    .nav-link {
+      color: #4b5563 !important;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--primary-color) !important;
     }
 
     .hero {
-      padding: 100px 20px;
-      text-align: center;
-      background: rgba(255, 255, 255, 0.05);
-      border-bottom: 1px solid #333;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 2px solid var(--primary-color);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(59,130,246,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+      opacity: 0.3;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
     }
 
     .hero h1 {
-      font-size: 3em;
-      color: #00ffff;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: #6b7280;
+      margin-bottom: 2rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border: none;
+      padding: 12px 32px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
     }
 
     .section-title {
-      color: #00ffff;
-      border-bottom: 2px solid #00ffff;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 3rem;
+      position: relative;
       display: inline-block;
-      margin-bottom: 20px;
     }
 
-    .project-card {
-      background-color: #222;
-      border: 1px solid #333;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 20px;
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      border-radius: 2px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 2px solid var(--primary-color);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      height: 100%;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.1);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(37, 99, 235, 0.2);
+      border-color: var(--secondary-color);
+    }
+
+    .card h4 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .skill-item {
+      background: #ffffff;
+      border: 2px solid var(--primary-color);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(37, 99, 235, 0.1);
+    }
+
+    .skill-item:hover {
+      border-color: var(--secondary-color);
+      transform: translateX(5px);
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background: #ffffff;
+      border: 2px solid var(--primary-color);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(37, 99, 235, 0.1);
+    }
+
+    .contact-item:hover {
+      border-color: var(--secondary-color);
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+    }
+
+    .contact-item i {
+      color: var(--primary-color);
+      margin-right: 1rem;
+      font-size: 1.2rem;
+      width: 20px;
+    }
+
+    .contact-item a {
+      color: #4b5563;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact-item a:hover {
+      color: var(--primary-color);
     }
 
     footer {
-      padding: 20px;
-      text-align: center;
-      background-color: #111;
-      border-top: 1px solid #333;
-      margin-top: 40px;
+      background: #ffffff;
+      border-top: 2px solid var(--primary-color);
+      padding: 2rem 0;
+      margin-top: 5rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        min-height: 80vh;
+        padding: 2rem 0;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .card {
+        padding: 1.5rem;
+      }
     }
   </style>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#">La Lin Tun</a>
-      <div class="collapse navbar-collapse">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
           <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-          <li class="nav-item"><a class="nav-link" href="#bio">Bio</a></li>
           <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-          <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -77,79 +253,164 @@
 
   <section class="hero">
     <div class="container">
-      <h1>Hi, I'm La Lin Tun</h1>
-      <p>Aspiring Full-Stack Web Developer | Python | Networking | Problem Solver</p>
+      <div class="row align-items-center">
+        <div class="col-lg-8 hero-content">
+          <h1>Junior Developer</h1>
+          <p>Building modern web applications with Python, JavaScript, and cutting-edge technologies. Passionate about creating seamless user experiences and robust backend systems.</p>
+          <a href="#contact" class="btn btn-primary">Get In Touch</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section id="bio" class="container py-5">
-    <h2 class="section-title">About Me</h2>
-    <p>I am a motivated and hardworking individual with experience leading group projects and resolving issues effectively. I am a recent graduate with hands-on experience in web development, as well as machine learning using Python and Numpy. Additionally, my HND specialized in Networking, and I have practical knowledge in server setup, networking, and security based on CCNA-level understanding. While I am still exploring which career path to specialize in—whether it's software development, machine learning, or networking—I am confident in my ability to learn quickly and adapt to various challenges, making me a versatile and capable candidate for any role.</p>
+  <section id="about" class="py-5">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="row">
+        <div class="col-lg-8">
+          <p class="lead">Recent IT graduate with hands-on experience in web development, machine learning, and network administration. I combine technical expertise with strong problem-solving skills to deliver innovative solutions.</p>
+          <p><strong>Education:</strong> BSc (Hons) Information Technology - University of the West of England (2024)</p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section id="projects" class="container py-5">
-    <h2 class="section-title">Projects</h2>
+  <section id="projects" class="py-5">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card">
+            <h4><i class="fas fa-globe me-2"></i>Portfolio Website</h4>
+            <p>Responsive portfolio built with HTML5, CSS3, Bootstrap, and JavaScript. Features smooth animations and modern design principles.</p>
+            <div class="mt-3">
+              <span class="badge bg-primary me-2">HTML/CSS</span>
+              <span class="badge bg-primary me-2">Bootstrap</span>
+              <span class="badge bg-primary">JavaScript</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <h4><i class="fas fa-shopping-cart me-2"></i>E-Commerce Platform (Ongoing)</h4>
+            <p>Full-stack shopping solution with JavaScript frontend and PHP backend. Includes user authentication, product management, and secure payment processing.</p>
+            <div class="mt-3">
+              <span class="badge bg-primary me-2">JavaScript</span>
+              <span class="badge bg-primary me-2">PHP</span>
+              <span class="badge bg-primary">MySQL</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <h4><i class="fas fa-shopping-cart me-2"></i>Simple Calculator</h4>
+            <p>Functional calculator website with a modern glassmorphism design that supports all basic arithmetic operations (addition, subtraction, multiplication, division) and includes advanced features like keyboard input, backspace functionality, and error handling.</p>
+            <div class="mt-3">
+              <span class="badge bg-primary me-2">HTML/CSS</span>
+              <span class="badge bg-primary">JavaScript</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="py-5">
+    <div class="container">
+      <h2 class="section-title">Skills</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="skill-item">
+            <h5><i class="fas fa-code me-2"></i>Frontend Development</h5>
+            <p>HTML5, CSS3, JavaScript, Bootstrap, Responsive Design</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="skill-item">
+            <h5><i class="fas fa-server me-2"></i>Backend Development</h5>
+            <p>Python, PHP, Git/GitHub, API Development</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="skill-item">
+            <h5><i class="fas fa-network-wired me-2"></i>Networking</h5>
+            <p>CCNA-Level Knowledge, Server Setup, Network Security</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="skill-item">
+            <h5><i class="fas fa-brain me-2"></i>Machine Learning</h5>
+            <p>Python, NumPy, Data Analysis, Problem Solving</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <section id="experience" class="py-5" style="margin-bottom: 60px;">
+  <div class="container">
+    <h2 class="section-title text-center mb-5">Experience</h2>
     <div class="row">
-      <div class="col-md-6">
-        <div class="project-card">
-          <h4>Portfolio Website</h4>
-          <p>Personal portfolio site built using HTML, CSS, Bootstrap, and JavaScript. Responsive design and animated layout.</p>
+      <div class="col-md-6 mb-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h4 class="card-title">Assistant Technician</h4>
+            <p class="text-muted">Bright Moon Hospital, Myanmar • 2022 - 2023</p>
+            <ul class="list-unstyled mb-0">
+              <li>• Deployed computer systems and network infrastructure across hospital departments</li>
+              <li>• Resolved IT issues including server access and Wi-Fi connectivity problems</li>
+              <li>• Trained staff on new technology and equipment usage</li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="project-card">
-          <h4>E-Commerce Site (In Progress)</h4>
-          <p>Online shopping cart using JS frontend and PHP backend. Includes product pages, cart system, and user login.</p>
+      
+      <div class="col-md-6 mb-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h4 class="card-title">Hall Staff</h4>
+            <p class="text-muted">Bunsik, Camden Town • Nov 2024 - Present</p>
+            <ul class="list-unstyled mb-0">
+              <li>• Provided excellent customer service and operated the cash register.</li>
+              <li>• Learned to work efficiently while gaining teamwork and problem-solving skills in a fast-paced environment.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+  <section id="contact" class="py-5" >
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:lalintun014@gmail.com">lalintun014@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span>+44 7774418835</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Uxbridge, London</span>
+          </div>
         </div>
       </div>
     </div>
-  </section>
-
-  <section id="skills" class="container py-5">
-    <h2 class="section-title">Skills</h2>
-    <ul>
-      <li>HTML5, CSS3, JavaScript, Bootstrap</li>
-      <li>Python, PHP, Git/GitHub</li>
-      <li>CCNA-Level Networking Knowledge (Server Setup, Network Security)</li>
-      <li>Machine Learning (Python, Numpy)</li>
-      <li>Teamwork, Problem Solving, Communication</li>
-    </ul>
-  </section>
-
-  <section id="experience" class="container py-5">
-    <h2 class="section-title">Experience</h2>
-    <div>
-      <h5>Assistant Technician - Bright Moon Hospital, Myanmar (2021 - 2023)</h5>
-      <ul>
-        <li>Helped set up computer systems, network connections, and software across hospital departments.</li>
-        <li>Troubleshot IT-related issues, including Wi-Fi and server access problems.</li>
-        <li>Assisted in training hospital staff to use new tech and equipment.</li>
-      </ul>
-    </div>
-    <div>
-      <h5>Hall Staff - Bunsik, Camden Town (Nov 2024 - Present)</h5>
-      <ul>
-        <li>Customer service and cashier responsibilities.</li>
-        <li>Handled catering and food service duties.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="education" class="container py-5">
-    <h2 class="section-title">Education</h2>
-    <p><strong>University of the West of England, UK</strong><br>
-    BSc (Hons) Information Technology - 2:2 (2024)</p>
-  </section>
-
-  <section id="contact" class="container py-5">
-    <h2 class="section-title">Contact</h2>
-    <p>Email: <a href="mailto:lalintun014@gmail.com" style="color:#00ffff;">lalintun014@gmail.com</a></p>
-    <p>Phone: +44 7774418835</p>
-    <p>Location: Uxbridge, London</p>
   </section>
 
   <footer>
-    <p>&copy; 2025 La Lin Tun | Built with HTML, CSS, JS, PHP, and Bootstrap</p>
+    <div class="container">
+      <div class="text-center">
+        <p class="mb-0">&copy; 2025 La Lin Tun • Crafted with modern web technologies</p>
+      </div>
+    </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
