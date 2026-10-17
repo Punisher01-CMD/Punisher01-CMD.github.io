@@ -1,419 +1,391 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>La Lin Tun | Portfolio</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- EDIT: page title and description (shows in Google and when you share the link) -->
+<title>Your Name | Cybersecurity MSc Student</title>
+<meta name="description" content="Cybersecurity MSc student in London with a networking and software background, looking for a UK security role.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ============ COLOURS: change these to restyle the whole site ============ */
+  :root {
+    --bg: #E9EEED;
+    --surface: #F6F9F8;
+    --ink: #0D2B2C;
+    --muted: #55696A;
+    --line: #C5D1D0;
+    --accent: #0F766E;      /* links, buttons */
+    --signal: #E8A100;      /* the highlighted hop in the hero */
+    --hero-bg: #0D2B2C;
+    --hero-ink: #E6F0EE;
+    --hero-muted: #8FA9A7;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
     :root {
-      --primary-color: #2563eb;
-      --secondary-color: #1e40af;
-      --accent-color: #3b82f6;
-      --text-muted: #64748b;
-      --dark-bg: #0f172a;
-      --card-bg: #1e293b;
+      --bg: #0A1819;
+      --surface: #102425;
+      --ink: #E3EEEC;
+      --muted: #8FA9A7;
+      --line: #25403F;
+      --accent: #4FD1C0;
+      --hero-bg: #071213;
     }
+  }
 
-    * {
-      scroll-behavior: smooth;
-    }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Instrument Sans", system-ui, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 2px; }
+  h1, h2, h3 { font-family: "Bricolage Grotesque", sans-serif; line-height: 1.1; margin: 0; letter-spacing: -0.02em; }
+  p { margin: 0 0 1em; max-width: 62ch; }
 
-    html {
-        scroll-padding-top: 80px; /* Adjust according to your navbar height */
-    }
+  .wrap { width: min(1080px, 100% - 2.5rem); margin-inline: auto; }
 
-    body {
-      background: #ffffff;
-      color: #1f2937;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      line-height: 1.6;
-    }
+  /* ============ NAV ============ */
+  nav { position: absolute; inset: 0 0 auto 0; z-index: 5; }
+  nav .wrap { display: flex; justify-content: space-between; align-items: center; padding-block: 1.25rem; }
+  nav a { color: var(--hero-ink); text-decoration: none; font-weight: 500; font-size: .95rem; }
+  nav ul { display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0; }
+  nav a:hover { color: var(--signal); }
+  .brand { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 1.15rem; }
+  @media (max-width: 640px) { nav ul li:nth-child(-n+2) { display: none; } }
 
-    .navbar {
-      background: #ffffff;
-      backdrop-filter: blur(10px);
-      border-bottom: 2px solid var(--primary-color);
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 10px rgba(37, 99, 235, 0.1);
-    }
+  /* ============ HERO ============ */
+  .hero { background: var(--hero-bg); color: var(--hero-ink); padding: 8rem 0 5rem; }
+  .hero .wrap { display: grid; gap: 3.5rem; grid-template-columns: 1fr; }
+  @media (min-width: 900px) { .hero .wrap { grid-template-columns: 1fr 1.15fr; align-items: center; } }
+  .hero h1 { font-size: clamp(2.6rem, 6.5vw, 4.6rem); font-weight: 800; }
+  .hero .lead { margin-top: 1.5rem; font-size: 1.2rem; color: var(--hero-muted); }
+  .hero .lead strong { color: var(--hero-ink); font-weight: 600; }
+  .actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+  .btn {
+    display: inline-block; padding: .75rem 1.25rem; border-radius: 6px; font-weight: 600;
+    text-decoration: none; border: 2px solid var(--signal); font-size: 1rem;
+  }
+  .btn.primary { background: var(--signal); color: #1B1400; }
+  .btn.primary:hover { background: #FFB916; }
+  .btn.ghost { color: var(--hero-ink); border-color: #3B5B59; }
+  .btn.ghost:hover { border-color: var(--hero-ink); }
 
-    .navbar-brand {
-      font-weight: 700;
-      color: var(--primary-color) !important;
-      font-size: 1.5rem;
-    }
+  /* Traceroute: the one memorable element */
+  .trace {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: .88rem; line-height: 1.5;
+    background: #071516; border: 1px solid #1E3A39; border-radius: 10px; padding: 1.25rem 1.25rem 1.5rem;
+    overflow-x: auto;
+  }
+  .trace .cmd { color: var(--hero-muted); margin-bottom: .9rem; }
+  .trace .cmd b { color: var(--hero-ink); font-weight: 500; }
+  .hop { display: grid; grid-template-columns: 1.6rem 1fr auto; gap: .75rem; padding: .55rem 0; border-top: 1px dashed #1E3A39; opacity: 0; }
+  .hop .n { color: var(--hero-muted); }
+  .hop .where { color: var(--hero-ink); }
+  .hop .where small { display: block; color: var(--hero-muted); font-size: .8rem; }
+  .hop .t { color: var(--hero-muted); white-space: nowrap; }
+  .hop.now .where, .hop.now .n { color: var(--signal); }
+  .hop.next .where { color: var(--hero-muted); }
+  .hop.next .t::after { content: "_"; animation: blink 1s steps(1) infinite; color: var(--signal); }
+  @keyframes blink { 50% { opacity: 0; } }
+  .hop { animation: show .5s forwards; }
+  .hop:nth-of-type(1) { animation-delay: .4s; }
+  .hop:nth-of-type(2) { animation-delay: 1.1s; }
+  .hop:nth-of-type(3) { animation-delay: 1.8s; }
+  .hop:nth-of-type(4) { animation-delay: 2.5s; }
+  .hop:nth-of-type(5) { animation-delay: 3.2s; }
+  @keyframes show { to { opacity: 1; } }
 
-    .nav-link {
-      color: #4b5563 !important;
-      font-weight: 500;
-      transition: color 0.3s ease;
-      position: relative;
-    }
+  /* ============ SECTIONS ============ */
+  section.block { padding: 5rem 0; }
+  section.block + section.block { border-top: 1px solid var(--line); }
+  .block h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); margin-bottom: 2rem; }
+  .split { display: grid; gap: 2.5rem; }
+  @media (min-width: 860px) { .split { grid-template-columns: 1fr 1.6fr; } .split h2 { margin-bottom: 0; } }
 
-    .nav-link:hover {
-      color: var(--primary-color) !important;
-    }
+  /* Projects: ruled rows instead of identical cards */
+  .project { display: grid; gap: .75rem 2rem; padding: 1.75rem 0; border-top: 1px solid var(--line); }
+  .project:last-child { border-bottom: 1px solid var(--line); }
+  @media (min-width: 860px) { .project { grid-template-columns: 1fr 1.6fr; } }
+  .project h3 { font-size: 1.5rem; }
+  .status { display: inline-block; margin-top: .5rem; font-size: .85rem; font-weight: 600; color: var(--muted); }
+  .status::before { content: ""; display: inline-block; width: .6rem; height: .6rem; border-radius: 50%; margin-right: .45rem; background: var(--muted); }
+  .status.done::before { background: var(--accent); }
+  .status.wip::before { background: var(--signal); }
+  .tags { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; padding: 0; margin: .5rem 0 .75rem; }
+  .tags li { font-size: .85rem; padding: .15rem .6rem; border: 1px solid var(--line); border-radius: 99px; color: var(--muted); background: var(--surface); }
 
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      background: #ffffff;
-      position: relative;
-      overflow: hidden;
-      border-bottom: 2px solid var(--primary-color);
-    }
+  /* Skills */
+  .skills { display: grid; gap: 2rem; }
+  @media (min-width: 700px) { .skills { grid-template-columns: repeat(3, 1fr); } }
+  .skills h3 { font-size: 1.15rem; margin-bottom: .6rem; }
+  .skills ul { margin: 0; padding-left: 1.1rem; color: var(--muted); }
+  .skills li { margin-bottom: .3rem; }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(59,130,246,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-      opacity: 0.3;
-    }
+  /* Timeline: a real sequence, so a vertical line is meaningful */
+  .timeline { list-style: none; margin: 0; padding: 0 0 0 1.5rem; border-left: 2px solid var(--line); }
+  .timeline li { position: relative; padding-bottom: 2.25rem; }
+  .timeline li::before {
+    content: ""; position: absolute; left: calc(-1.5rem - 7px); top: .45rem;
+    width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent);
+  }
+  .timeline li.current::before { background: var(--signal); border-color: var(--signal); }
+  .timeline h3 { font-size: 1.25rem; }
+  .timeline .when { color: var(--muted); font-size: .92rem; margin: .15rem 0 .5rem; }
+  .timeline p { margin-bottom: .5rem; }
 
-    .hero-content {
-      position: relative;
-      z-index: 1;
-    }
+  /* Certifications */
+  .certs { list-style: none; padding: 0; margin: 0; display: grid; gap: .9rem; }
+  .certs li { display: flex; justify-content: space-between; gap: 1rem; padding-bottom: .9rem; border-bottom: 1px solid var(--line); }
+  .certs span:last-child { color: var(--muted); font-size: .95rem; white-space: nowrap; }
 
-    .hero h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 800;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+  /* Contact */
+  .contact { background: var(--hero-bg); color: var(--hero-ink); padding: 5rem 0 4rem; }
+  .contact h2 { font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 1rem; }
+  .contact p { color: var(--hero-muted); }
+  .contact a.mail { color: var(--signal); font-family: "Bricolage Grotesque", sans-serif; font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 700; }
+  .links { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.75rem; }
+  .links a { color: var(--hero-ink); }
+  footer { margin-top: 3.5rem; font-size: .88rem; color: var(--hero-muted); }
 
-    .hero p {
-      font-size: 1.25rem;
-      color: #6b7280;
-      margin-bottom: 2rem;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      border: none;
-      padding: 12px 32px;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
-    }
-
-    .section-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #1f2937;
-      margin-bottom: 3rem;
-      position: relative;
-      display: inline-block;
-    }
-
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 0;
-      width: 60px;
-      height: 4px;
-      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-      border-radius: 2px;
-    }
-
-    .card {
-      background: #ffffff;
-      border: 2px solid var(--primary-color);
-      border-radius: 16px;
-      padding: 2rem;
-      transition: all 0.3s ease;
-      height: 100%;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.1);
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 30px rgba(37, 99, 235, 0.2);
-      border-color: var(--secondary-color);
-    }
-
-    .card h4 {
-      color: var(--primary-color);
-      margin-bottom: 1rem;
-      font-weight: 600;
-    }
-
-    .skill-item {
-      background: #ffffff;
-      border: 2px solid var(--primary-color);
-      border-radius: 8px;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 10px rgba(37, 99, 235, 0.1);
-    }
-
-    .skill-item:hover {
-      border-color: var(--secondary-color);
-      transform: translateX(5px);
-      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1.5rem;
-      padding: 1rem;
-      background: #ffffff;
-      border: 2px solid var(--primary-color);
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 10px rgba(37, 99, 235, 0.1);
-    }
-
-    .contact-item:hover {
-      border-color: var(--secondary-color);
-      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
-    }
-
-    .contact-item i {
-      color: var(--primary-color);
-      margin-right: 1rem;
-      font-size: 1.2rem;
-      width: 20px;
-    }
-
-    .contact-item a {
-      color: #4b5563;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .contact-item a:hover {
-      color: var(--primary-color);
-    }
-
-    footer {
-      background: #ffffff;
-      border-top: 2px solid var(--primary-color);
-      padding: 2rem 0;
-      margin-top: 5rem;
-    }
-
-    @media (max-width: 768px) {
-      .hero {
-        min-height: 80vh;
-        padding: 2rem 0;
-      }
-      
-      .section-title {
-        font-size: 2rem;
-      }
-      
-      .card {
-        padding: 1.5rem;
-      }
-    }
-  </style>
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hop { animation: none; opacity: 1; }
+    .hop.next .t::after { animation: none; }
+  }
+</style>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">La Lin Tun</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+
+<nav aria-label="Main">
+  <div class="wrap">
+    <!-- EDIT: your name or initials -->
+    <a class="brand" href="#top">Your Name</a>
+    <ul>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#background">Background</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ======================= HERO ======================= -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <!-- EDIT: your name -->
+      <h1>Your Name</h1>
+      <!-- EDIT: one clear sentence about who you are and what you want -->
+      <p class="lead">
+        <strong>MSc Cybersecurity student in London.</strong>
+        I started in networking, taught myself software development, and now I'm
+        building the skills to defend the systems I used to only connect.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href="#projects">See my projects</a>
+        <!-- EDIT: put your CV file in the same folder and name it cv.pdf -->
+        <a class="btn ghost" href="cv.pdf">Download CV</a>
+      </div>
+    </div>
+
+    <!-- The route that got me here. Edit the text, keep the structure. -->
+    <div class="trace" role="img" aria-label="My path: networking diploma in Myanmar, BSc IT at UWE Bristol, two years supervising in UK hospitality while learning software development, now MSc Cybersecurity in London, next step open.">
+      <div class="cmd">$ <b>traceroute</b> my-career</div>
+
+      <div class="hop">
+        <span class="n">1</span>
+        <span class="where">Myanmar<small>HND in IT, networking specialism</small></span>
+        <span class="t">2.5 yrs</span>
+      </div>
+      <div class="hop">
+        <span class="n">2</span>
+        <span class="where">Bristol<small>BSc IT, UWE Bristol (top-up year)</small></span>
+        <span class="t">1 yr</span>
+      </div>
+      <div class="hop">
+        <span class="n">3</span>
+        <span class="where">UK workplace<small>Restaurant supervisor, self-taught developer</small></span>
+        <span class="t">2 yrs</span>
+      </div>
+      <div class="hop now">
+        <span class="n">4</span>
+        <span class="where">London<small>MSc Cybersecurity (Advanced Practice), Northumbria</small></span>
+        <span class="t">now</span>
+      </div>
+      <div class="hop next">
+        <span class="n">5</span>
+        <span class="where">Your security team<small>Open to junior security roles in the UK</small></span>
+        <span class="t"></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ======================= PROJECTS ======================= -->
+<!-- EDIT: replace each project below with your own real work. Copy a whole
+     <article class="project"> block to add another one. -->
+<section class="block" id="projects">
+  <div class="wrap">
+    <h2>Projects</h2>
+
+    <article class="project">
+      <div>
+        <h3>Home SOC lab</h3>
+        <span class="status wip">Planned</span>
+      </div>
+      <div>
+        <p>
+          A small lab where I collect logs from a Windows and a Linux machine into a SIEM,
+          trigger test attacks, and write up what the alerts show. Replace this text with what you built and what you learned.
+        </p>
+        <ul class="tags"><li>Wazuh</li><li>Linux</li><li>Log analysis</li></ul>
+        <a href="https://github.com/your-username/soc-lab">View on GitHub</a>
+      </div>
+    </article>
+
+    <article class="project">
+      <div>
+        <h3>Web application security assessment</h3>
+        <span class="status wip">Planned</span>
+      </div>
+      <div>
+        <p>
+          Test an intentionally vulnerable app (OWASP Juice Shop), document each finding with
+          evidence, risk rating, and a fix, in the format of a real penetration test report.
+        </p>
+        <ul class="tags"><li>OWASP Top 10</li><li>Burp Suite</li><li>Reporting</li></ul>
+        <a href="https://github.com/your-username/web-assessment">View on GitHub</a>
+      </div>
+    </article>
+
+    <article class="project">
+      <div>
+        <h3>Network traffic analysis</h3>
+        <span class="status wip">Planned</span>
+      </div>
+      <div>
+        <p>
+          Use my networking background to analyse packet captures of known malware traffic,
+          identify the indicators, and explain them step by step.
+        </p>
+        <ul class="tags"><li>Wireshark</li><li>TCP/IP</li><li>Threat analysis</li></ul>
+        <a href="https://github.com/your-username/traffic-analysis">View on GitHub</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ======================= SKILLS ======================= -->
+<section class="block" id="skills">
+  <div class="wrap">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div>
+        <h3>Solid foundations</h3>
+        <ul>
+          <!-- EDIT: only list what you can talk about in an interview -->
+          <li>Networking (HND specialism)</li>
+          <li>Operating systems and troubleshooting</li>
+          <li>Programming (self-taught)</li>
+          <li>Git and GitHub</li>
         </ul>
       </div>
-    </div>
-  </nav>
-
-  <section class="hero">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-8 hero-content">
-          <h1>Junior Developer</h1>
-          <p>Building modern web applications with Python, JavaScript, and cutting-edge technologies. Passionate about creating seamless user experiences and robust backend systems.</p>
-          <a href="#contact" class="btn btn-primary">Get In Touch</a>
-        </div>
+      <div>
+        <h3>Learning now (MSc)</h3>
+        <ul>
+          <li>Security monitoring and incident response</li>
+          <li>Penetration testing basics</li>
+          <li>Risk assessment and security frameworks</li>
+          <li>Digital forensics</li>
+        </ul>
       </div>
-    </div>
-  </section>
-
-  <section id="about" class="py-5">
-    <div class="container">
-      <h2 class="section-title">About Me</h2>
-      <div class="row">
-        <div class="col-lg-8">
-          <p class="lead">Recent IT graduate with hands-on experience in web development, machine learning, and network administration. I combine technical expertise with strong problem-solving skills to deliver innovative solutions.</p>
-          <p><strong>Education:</strong> BSc (Hons) Information Technology - University of the West of England (2024)</p>
-        </div>
+      <div>
+        <h3>Working with people</h3>
+        <ul>
+          <li>Leading a shift team under pressure</li>
+          <li>Handling incidents and complaints calmly</li>
+          <li>Following compliance and safety procedures</li>
+          <li>Explaining problems in plain English</li>
+        </ul>
       </div>
-    </div>
-  </section>
-
-  <section id="projects" class="py-5">
-    <div class="container">
-      <h2 class="section-title">Projects</h2>
-      <div class="row g-4">
-        <div class="col-md-6">
-          <div class="card">
-            <h4><i class="fas fa-globe me-2"></i>Portfolio Website</h4>
-            <p>Responsive portfolio built with HTML5, CSS3, Bootstrap, and JavaScript. Features smooth animations and modern design principles.</p>
-            <div class="mt-3">
-              <span class="badge bg-primary me-2">HTML/CSS</span>
-              <span class="badge bg-primary me-2">Bootstrap</span>
-              <span class="badge bg-primary">JavaScript</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card">
-            <h4><i class="fas fa-shopping-cart me-2"></i>E-Commerce Platform (Ongoing)</h4>
-            <p>Full-stack shopping solution with JavaScript frontend and PHP backend. Includes user authentication, product management, and secure payment processing.</p>
-            <div class="mt-3">
-              <span class="badge bg-primary me-2">JavaScript</span>
-              <span class="badge bg-primary me-2">PHP</span>
-              <span class="badge bg-primary">MySQL</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card">
-            <h4><i class="fas fa-shopping-cart me-2"></i>Simple Calculator</h4>
-            <p>Functional calculator website with a modern glassmorphism design that supports all basic arithmetic operations (addition, subtraction, multiplication, division) and includes advanced features like keyboard input, backspace functionality, and error handling.</p>
-            <div class="mt-3">
-              <span class="badge bg-primary me-2">HTML/CSS</span>
-              <span class="badge bg-primary">JavaScript</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="skills" class="py-5">
-    <div class="container">
-      <h2 class="section-title">Skills</h2>
-      <div class="row g-4">
-        <div class="col-md-6">
-          <div class="skill-item">
-            <h5><i class="fas fa-code me-2"></i>Frontend Development</h5>
-            <p>HTML5, CSS3, JavaScript, Bootstrap, Responsive Design</p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="skill-item">
-            <h5><i class="fas fa-server me-2"></i>Backend Development</h5>
-            <p>Python, PHP, Git/GitHub, API Development</p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="skill-item">
-            <h5><i class="fas fa-network-wired me-2"></i>Networking</h5>
-            <p>CCNA-Level Knowledge, Server Setup, Network Security</p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="skill-item">
-            <h5><i class="fas fa-brain me-2"></i>Machine Learning</h5>
-            <p>Python, NumPy, Data Analysis, Problem Solving</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
- <section id="experience" class="py-5" style="margin-bottom: 60px;">
-  <div class="container">
-    <h2 class="section-title text-center mb-5">Experience</h2>
-    <div class="row">
-      <div class="col-md-6 mb-4">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h4 class="card-title">Assistant Technician</h4>
-            <p class="text-muted">Bright Moon Hospital, Myanmar • 2022 - 2023</p>
-            <ul class="list-unstyled mb-0">
-              <li>• Deployed computer systems and network infrastructure across hospital departments</li>
-              <li>• Resolved IT issues including server access and Wi-Fi connectivity problems</li>
-              <li>• Trained staff on new technology and equipment usage</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-md-6 mb-4">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h4 class="card-title">Hall Staff</h4>
-            <p class="text-muted">Bunsik, Camden Town • Nov 2024 - Present</p>
-            <ul class="list-unstyled mb-0">
-              <li>• Provided excellent customer service and operated the cash register.</li>
-              <li>• Learned to work efficiently while gaining teamwork and problem-solving skills in a fast-paced environment.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      
     </div>
   </div>
 </section>
 
+<!-- ======================= BACKGROUND ======================= -->
+<section class="block" id="background">
+  <div class="wrap split">
+    <h2>Background</h2>
+    <div>
+      <ol class="timeline">
+        <li class="current">
+          <h3>MSc Cybersecurity (Advanced Practice)</h3>
+          <div class="when">Northumbria University, London campus · Started [month year]</div>
+          <p>Focus on [your modules or dissertation topic].</p>
+        </li>
+        <li>
+          <h3>Restaurant supervisor</h3>
+          <div class="when">[Company name] · 2 years</div>
+          <!-- EDIT: add real numbers, for example team size, shifts per week, cash handled -->
+          <p>Led a team of [number] per shift, trained new staff, handled cash and stock checks, and resolved customer and operational incidents. Learned software development alongside the job.</p>
+        </li>
+        <li>
+          <h3>BSc (Hons) Information Technology</h3>
+          <div class="when">University of the West of England, Bristol · Top-up final year</div>
+          <p>Final-year project: [title and one line about it].</p>
+        </li>
+        <li>
+          <h3>HND in IT, networking specialism</h3>
+          <div class="when">Myanmar · 2.5 years</div>
+          <p>Routing, switching, and network administration fundamentals.</p>
+        </li>
+      </ol>
 
-  <section id="contact" class="py-5" >
-    <div class="container">
-      <h2 class="section-title">Contact</h2>
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="contact-item">
-            <i class="fas fa-envelope"></i>
-            <a href="mailto:lalintun014@gmail.com">lalintun014@gmail.com</a>
-          </div>
-          <div class="contact-item">
-            <i class="fas fa-phone"></i>
-            <span>+44 7774418835</span>
-          </div>
-          <div class="contact-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <span>Uxbridge, London</span>
-          </div>
-        </div>
-      </div>
+      <h3 style="margin: 1rem 0 1.25rem;">Certifications</h3>
+      <ul class="certs">
+        <!-- EDIT: change the status as you progress -->
+        <li><span>CompTIA Security+</span><span>Planned</span></li>
+        <li><span>TryHackMe SOC Level 1 path</span><span>In progress</span></li>
+        <li><span>Microsoft SC-900</span><span>Planned</span></li>
+      </ul>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer>
-    <div class="container">
-      <div class="text-center">
-        <p class="mb-0">&copy; 2025 La Lin Tun • Crafted with modern web technologies</p>
-      </div>
+</main>
+
+<!-- ======================= CONTACT ======================= -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Let's talk</h2>
+    <p>I'm looking for a junior security role (SOC analyst, security analyst, or similar) in the UK after I graduate. The best way to reach me is email.</p>
+    <!-- EDIT: your email and links -->
+    <a class="mail" href="mailto:you@example.com">you@example.com</a>
+    <div class="links">
+      <a href="https://github.com/your-username">GitHub</a>
+      <a href="https://www.linkedin.com/in/your-profile">LinkedIn</a>
+      <a href="https://tryhackme.com/p/your-username">TryHackMe</a>
     </div>
-  </footer>
+    <footer>© <span id="year"></span> Your Name · London, UK</footer>
+  </div>
+</section>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
-
 </html>
